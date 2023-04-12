@@ -41,17 +41,15 @@ popd
 %install
 set -x 
 
+install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/nginx/conf.d/modules/ea-nginx-echo-module.conf
+
 if [ "$NAME" = "Ubuntu" ]; then
 # This allows me to maintain this code in the SPEC file
-# buildroot and libdir are wrong for Ubuntu
-
-install -D %{SOURCE1} $DEB_INSTALL_ROOT/etc/nginx/conf.d/modules/ea-nginx-echo-module.conf
-install -D ./nginx-build/objs/ngx_http_echo_module.so $DEB_INSTALL_ROOT/usr/lib64/nginx/modules/ngx_http_echo_module.so
-else
-# We are CentOS
-install -D %{SOURCE1} %{buildroot}/etc/nginx/conf.d/modules/ea-nginx-echo-module.conf
-install -D ./nginx-build/objs/ngx_http_echo_module.so %{buildroot}%{_libdir}/nginx/modules/ngx_http_echo_module.so
+# libdir are wrong for Ubuntu
+export _libdir="/usr/lib64"
 fi
+
+install -D ./nginx-build/objs/ngx_http_echo_module.so $RPM_BUILD_ROOT%{_libdir}/nginx/modules/ngx_http_echo_module.so
 
 %clean
 rm -rf %{buildroot}

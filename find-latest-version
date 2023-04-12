@@ -1,5 +1,5 @@
 #!/usr/local/cpanel/3rdparty/bin/perl
-# cpanel - find-latest-version                  Copyright(c) 2022 cPanel, L.L.C.
+# cpanel - find-latest-version                  Copyright(c) 2023 cPanel, L.L.C.
 #                                                           All rights Reserved.
 # copyright@cpanel.net                                         http://cpanel.net
 # This code is subject to the cPanel license. Unauthorized copying is prohibited
@@ -36,7 +36,7 @@ sub _get_required {
 
     die "Could not determine version from github\n" if !$version;
 
-    my $name = "$version.tar.gz";                                                  # needs to match $version
+    my $name = "$version.tar.gz";                                                                    # needs to match $version
     my $url  = "https://github.com/openresty/echo-nginx-module/archive/refs/tags/$version.tar.gz";
 
     return ( $version, $url, $name );
