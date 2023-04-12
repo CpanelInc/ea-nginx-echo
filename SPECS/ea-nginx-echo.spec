@@ -31,24 +31,19 @@ Basically it provides various utilities that help testing and debugging of other
 set -x
 
 mypwd=`pwd`
+# You will be in ./nginx-build after this source()
+#    so that configure and make etc can happen.
+# We probably want to popd back when we are done in there
 . /opt/cpanel/ea-nginx-ngxdev/set_NGINX_CONFIGURE_array.sh
 ./configure "${NGINX_CONFIGURE[@]}" --add-dynamic-module=$mypwd
 
 make
-
 popd
 
 %install
 set -x 
 
 install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/nginx/conf.d/modules/ea-nginx-echo-module.conf
-
-if [ "$NAME" = "Ubuntu" ]; then
-# This allows me to maintain this code in the SPEC file
-# libdir are wrong for Ubuntu
-export _libdir="/usr/lib64"
-fi
-
 install -D ./nginx-build/objs/ngx_http_echo_module.so $RPM_BUILD_ROOT%{_libdir}/nginx/modules/ngx_http_echo_module.so
 
 %clean
