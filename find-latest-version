@@ -28,7 +28,7 @@ sub _get_required {
 
     # get $version, $url, $name from $res
     my $version;
-    for my $tag ( @{ Cpanel::JSON::Load( $res->{content} ) } ) {
+    for my $tag ( @{ ea4_tool::util::json2ref( $res->{content} ) } ) {
         next if $tag->{name} !~ m/^v\d+\.\d+$/;
         $version = $tag->{name};
         last;
