@@ -38,7 +38,7 @@ sub _get_required {
 
     my $name = "$version.tar.gz";                                                                    # needs to match $version
     my $url  = "https://github.com/openresty/echo-nginx-module/archive/refs/tags/$version.tar.gz";
-
+	$version =~ s/.//s;
     return ( $version, $url, $name );
 }
 
