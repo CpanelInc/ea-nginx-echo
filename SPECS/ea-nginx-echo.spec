@@ -35,7 +35,7 @@ mypwd=`pwd`
 #    so that configure and make etc can happen.
 # We probably want to popd back when we are done in there
 . /opt/cpanel/ea-nginx-ngxdev/set_NGINX_CONFIGURE_array.sh
-./configure "${NGINX_CONFIGURE[@]}" --add-dynamic-module=$mypwd
+./auto/configure "${NGINX_CONFIGURE[@]}" --add-dynamic-module=$mypwd
 
 make
 popd
