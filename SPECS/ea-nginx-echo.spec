@@ -1,7 +1,7 @@
 Name:           ea-nginx-echo
 Version:        0.64
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4552 for more details
-%define release_prefix 7
+%define release_prefix 8
 Release:        %{release_prefix}%{?dist}.cpanel
 Summary:        Echo provides various utilities that help testing and debugging of other modules.
 License:        Custom, see LICENSE file.
@@ -55,6 +55,9 @@ rm -rf %{buildroot}
 %attr(0755,root,root) %{_libdir}/nginx/modules/ngx_http_echo_module.so
 
 %changelog
+* Wed May 13 2026 Cory McIntire <cory.mcintire@webpros.com> - 0.64-8
+- EA-13436: Build against ea-nginx version v1.31.0
+
 * Thu Apr 16 2026 Cory McIntire <cory.mcintire@webpros.com> - 0.64-7
 - EA-13411: Build against ea-nginx version v1.30.0
 
